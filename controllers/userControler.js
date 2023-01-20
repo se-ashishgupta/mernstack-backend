@@ -103,7 +103,7 @@ export const logout = async (req, res, next) => {
     //     message: "Logged Out Successfully",
     //   });
     const option = {
-      expires: new Date(Date.now()),
+      expires: new Date(Date.now(0)),
       httpOnly: true,
       secure: true,
       sameSite: "none",
