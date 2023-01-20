@@ -55,9 +55,9 @@ export const login = async (req, res, next) => {
     }
     const token = await user.generateToken();
     const option = {
-      path: "/",
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      secure: true,
       sameSite: "none",
     };
     res.status(200).cookie("token", token, option).json({
@@ -92,10 +92,10 @@ export const logout = async (req, res, next) => {
   try {
     res
       .status(200)
-      .cookie("token", null, {
-        path: "/",
+      .cookie("token", "", {
         expires: new Date(Date.now()),
         httpOnly: true,
+        secure: true,
         sameSite: "none",
       })
       .json({
