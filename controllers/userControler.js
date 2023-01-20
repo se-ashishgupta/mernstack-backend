@@ -90,18 +90,20 @@ export const myProfile = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   try {
-    res
-      .status(200)
-      .cookie("token", null, {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
-      .json({
-        success: true,
-        message: "Logged Out Successfully",
-      });
+    // res
+    //   .status(200)
+    //   .cookie("token", null, {
+    //     expires: new Date(Date.now()),
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: "none",
+    //   })
+    //   .json({
+    //     success: true,
+    //     message: "Logged Out Successfully",
+    //   });
+
+    res.clearCookie("token");
   } catch (error) {
     res.status(500).json({
       success: false,
