@@ -20,6 +20,8 @@ export const register = async (req, res, next) => {
     const option = {
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      secure: true,
+      sameSite: "none",
     };
     res.status(201).cookie("token", token, option).json({
       success: true,
@@ -55,6 +57,8 @@ export const login = async (req, res, next) => {
     const option = {
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      secure: true,
+      sameSite: "none",
     };
     res.status(200).cookie("token", token, option).json({
       success: true,
@@ -92,6 +96,8 @@ export const logout = async (req, res, next) => {
       .json({
         success: true,
         message: "Logged Out Successfully",
+        secure: true,
+        sameSite: "none",
       });
   } catch (error) {
     res.status(500).json({
