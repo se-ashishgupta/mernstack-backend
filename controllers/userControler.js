@@ -58,7 +58,6 @@ export const login = async (req, res, next) => {
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure: true,
-      sameSite: "none",
     };
     res.status(200).cookie("token", token, option).json({
       success: true,
@@ -96,7 +95,6 @@ export const logout = async (req, res, next) => {
         expires: new Date(Date.now()),
         httpOnly: true,
         secure: true,
-        sameSite: "none",
       })
       .json({
         success: true,
