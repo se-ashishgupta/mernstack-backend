@@ -58,7 +58,6 @@ export const login = async (req, res, next) => {
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure: true,
-      sameSite: "none",
     };
     res.status(200).cookie("token", token, option).json({
       success: true,
@@ -90,20 +89,17 @@ export const myProfile = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   try {
-    // res
-    //   .status(200)
-    //   .cookie("token", null, {
-    //     expires: new Date(Date.now()),
-    //     httpOnly: true,
-    //     secure: true,
-    //     sameSite: "none",
-    //   })
-    //   .json({
-    //     success: true,
-    //     message: "Logged Out Successfully",
-    //   });
-
-    res.clearCookie("token");
+    res
+      .status(200)
+      .cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        secure: true,
+      })
+      .json({
+        success: true,
+        message: "Logged Out Successfully",
+      });
   } catch (error) {
     res.status(500).json({
       success: false,
