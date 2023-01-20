@@ -22,6 +22,7 @@ export const register = async (req, res, next) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: "mernstack-ueiy.onrender.com",
     };
     res.status(201).cookie("token", token, option).json({
       success: true,
@@ -93,10 +94,11 @@ export const logout = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", null, {
-        expires: new Date(0),
+        expires: new Date(Date.now()),
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        domain: "mernstack-ueiy.onrender.com",
       })
       .json({
         success: true,
