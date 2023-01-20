@@ -55,9 +55,9 @@ export const login = async (req, res, next) => {
     }
     const token = await user.generateToken();
     const option = {
+      path: "/",
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
-      secure: true,
       sameSite: "none",
     };
     res.status(200).cookie("token", token, option).json({
@@ -90,28 +90,18 @@ export const myProfile = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   try {
-    // res
-    //   .status(200)
-    //   .cookie("token", null, {
-    //     expires: new Date(Date.now()),
-    //     //httpOnly: true,
-    //     secure: true,
-    //     sameSite: "none",
-    //   })
-    //   .json({
-    //     success: true,
-    //     message: "Logged Out Successfully",
-    //   });
-    const option = {
-      expires: new Date(Date.now(0)),
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-    };
-    res.status(200).cookie("token", null, option).json({
-      success: true,
-      message: "Logged Out Successfully",
-    });
+    res
+      .status(200)
+      .cookie("token", null, {
+        path: "/",
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        sameSite: "none",
+      })
+      .json({
+        success: true,
+        message: "Logged Out Successfully",
+      });
   } catch (error) {
     res.status(500).json({
       success: false,
