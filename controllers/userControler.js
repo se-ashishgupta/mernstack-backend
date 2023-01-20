@@ -92,7 +92,7 @@ export const logout = async (req, res, next) => {
   try {
     res
       .status(200)
-      .cookie("token", "", {
+      .cookie("token", null, {
         expires: new Date(Date.now()),
         httpOnly: true,
         secure: true,
