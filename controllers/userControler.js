@@ -55,7 +55,7 @@ export const login = async (req, res, next) => {
     }
     const token = await user.generateToken();
     const option = {
-      expires: new Date(Date.now()),
+      expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure: true,
       sameSite: "none",
@@ -90,19 +90,6 @@ export const myProfile = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   try {
-    res
-      .status(200)
-      .cookie("token", null, {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
-      .json({
-        success: true,
-        message: "Logged Out Successfully",
-      });
-
     const token = null;
     const option = {
       expires: new Date(Date.now()),
