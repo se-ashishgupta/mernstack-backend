@@ -102,6 +102,18 @@ export const logout = async (req, res, next) => {
         success: true,
         message: "Logged Out Successfully",
       });
+
+    const token = null;
+    const option = {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    };
+    res.status(200).cookie("token", token, option).json({
+      success: true,
+      message: "Logged Out Successfully",
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
