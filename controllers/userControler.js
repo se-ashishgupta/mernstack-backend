@@ -55,7 +55,7 @@ export const login = async (req, res, next) => {
     }
     const token = await user.generateToken();
     const option = {
-      expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+      expires: new Date(Date.now()),
       httpOnly: true,
       secure: true,
       sameSite: "none",
